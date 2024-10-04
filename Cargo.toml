@@ -1,0 +1,9 @@
+[package]
+name = "stellar-asset-spec-json"
+edition = "2021"
+version = "0.0.0"
+publish = false
+
+[dependencies]
+soroban-sdk = "=22.0.0-rc.2"
+serde_json = "1.0.128"
