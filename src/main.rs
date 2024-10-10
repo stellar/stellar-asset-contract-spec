@@ -1,24 +1,48 @@
-use std::{
-    error::Error,
-    fs::File,
-    io::{Cursor, Write},
-};
+use std::error::Error;
 
-use soroban_sdk::xdr::{Limited, Limits, ReadXdr, WriteXdr};
+mod generate;
+mod version;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let spec = soroban_sdk::token::StellarAssetSpec::spec_xdr();
-    let mut limited = Limited::new(Cursor::new(spec), Limits::none());
-    let entries = soroban_sdk::xdr::ScSpecEntry::read_xdr_iter(&mut limited);
+use clap::{CommandFactory, Parser, Subcommand};
+use std::fmt::Debug;
 
-    let mut json_file = File::create("stellar-asset-spec.json")?;
-    let mut xdr_file = File::create("stellar-asset-spec.xdr")?;
+#[derive(Parser, Debug, Clone)]
+#[command(
+    author,
+    version,
+    about,
+    long_about = None,
+    disable_help_subcommand = true,
+    disable_version_flag = true,
+    disable_colored_help = true,
+    infer_subcommands = true,
+)]
+struct Root {
+    #[command(subcommand)]
+    cmd: Cmd,
+}
 
-    for entry in entries {
-        let entry = entry?;
-        serde_json::to_writer_pretty(&mut json_file, &entry)?;
-        xdr_file.write_all(&entry.to_xdr(Limits::none())?)?;
+#[derive(Subcommand, Debug, Clone)]
+enum Cmd {
+    /// Generate the spec
+    Generate(generate::Cmd),
+    /// Print version information
+    Version,
+}
+
+fn run() -> Result<(), Box<dyn Error>> {
+    let root = Root::parse();
+    match root.cmd {
+        Cmd::Generate(c) => c.run()?,
+        Cmd::Version => version::Cmd::run(),
     }
-
     Ok(())
+}
+
+fn main() {
+    if let Err(e) = run() {
+        Root::command()
+            .error(clap::error::ErrorKind::ValueValidation, e)
+            .exit()
+    }
 }
