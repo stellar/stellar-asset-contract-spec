@@ -3,8 +3,8 @@
 This repository contains a pre-generated copy of the [SEP-48 Contract Interface Specification] for the [Stellar Asset Contract].
 
 The interface is available in two formats:
-- [XDR]: [stellar-asset-spec.xdr](stellar-asset-spec.xdr)
-- [XDR-JSON]: [stellar-asset-spec.json](stellar-asset-spec.json)
+- [XDR] in [stellar-asset-spec.xdr](stellar-asset-spec.xdr)
+- [XDR-JSON] in [stellar-asset-spec.json](stellar-asset-spec.json)
 
 [XDR]: https://developers.stellar.org/docs/learn/encyclopedia/data-format/xdr
 [XDR-JSON]: https://developers.stellar.org/docs/learn/encyclopedia/data-format/xdr-json
