@@ -1,5 +1,5 @@
 [package]
-name = "stellar-asset-contract-spec"
+name = "stellar-contract-asset-spec"
 edition = "2021"
 version = "0.0.0"
 publish = false
