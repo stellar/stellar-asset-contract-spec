@@ -35,10 +35,12 @@ impl Cmd {
 
         match self.format {
             Format::Json => {
+                let mut collected_entries = Vec::new();
                 for entry in entries {
                     let entry = entry?;
-                    serde_json::to_writer_pretty(stdout(), &entry)?;
+                    collected_entries.push(entry);
                 }
+                serde_json::to_writer_pretty(stdout(), &collected_entries)?;
             }
             Format::Xdr => {
                 for entry in entries {
