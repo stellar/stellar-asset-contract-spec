@@ -16,6 +16,5 @@ The interface is available in two formats:
 Run these commands before committing the changes to generate new JSON and XDR files.
 
 ```bash
-cargo build # build
 make gen # generate files
 ```
