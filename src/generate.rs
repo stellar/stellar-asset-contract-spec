@@ -1,4 +1,4 @@
-use stellar_xdr::{self as xdr, Limited, Limits, ReadXdr, WriteXdr};
+use stellar_xdr::{Limited, Limits, ReadXdr, ScSpecEntry, WriteXdr};
 use std::io::{self, stdout};
 use std::io::{Cursor, Write};
 
@@ -7,7 +7,7 @@ use clap::{Args, ValueEnum};
 #[derive(thiserror::Error, Debug)]
 pub enum Error {
     #[error(transparent)]
-    Xdr(#[from] xdr::Error),
+    Xdr(#[from] stellar_xdr::Error),
     #[error(transparent)]
     Serde(#[from] serde_json::Error),
     #[error(transparent)]
@@ -31,7 +31,7 @@ impl Cmd {
     pub fn run(&self) -> Result<(), Error> {
         let spec = stellar_asset_spec::xdr();
         let mut limited = Limited::new(Cursor::new(spec), Limits::none());
-        let entries = xdr::ScSpecEntry::read_xdr_iter(&mut limited);
+        let entries = ScSpecEntry::read_xdr_iter(&mut limited);
 
         match self.format {
             Format::Json => {
