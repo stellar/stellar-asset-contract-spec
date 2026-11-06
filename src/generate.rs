@@ -1,4 +1,4 @@
-use soroban_sdk::xdr::{self, Limited, Limits, ReadXdr, WriteXdr};
+use stellar_xdr::{self as xdr, Limited, Limits, ReadXdr, WriteXdr};
 use std::io::{self, stdout};
 use std::io::{Cursor, Write};
 
@@ -29,9 +29,9 @@ pub enum Format {
 
 impl Cmd {
     pub fn run(&self) -> Result<(), Error> {
-        let spec = soroban_sdk::token::StellarAssetSpec::spec_xdr();
+        let spec = stellar_asset_spec::xdr();
         let mut limited = Limited::new(Cursor::new(spec), Limits::none());
-        let entries = soroban_sdk::xdr::ScSpecEntry::read_xdr_iter(&mut limited);
+        let entries = xdr::ScSpecEntry::read_xdr_iter(&mut limited);
 
         match self.format {
             Format::Json => {
