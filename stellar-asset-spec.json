@@ -7,12 +7,12 @@
         {
           "doc": "",
           "name": "from",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "spender",
-          "type_": "address"
+          "type": "address"
         }
       ],
       "outputs": [
@@ -28,7 +28,7 @@
         {
           "doc": "",
           "name": "id",
-          "type_": "address"
+          "type": "address"
         }
       ],
       "outputs": [
@@ -38,28 +38,28 @@
   },
   {
     "function_v0": {
-      "doc": "Set the allowance by `amount` for `spender` to transfer/burn from\\n`from`.\\n\\nThe amount set is the amount that spender is approved to transfer out of\\nfrom's balance. The spender will be allowed to transfer amounts, and\\nwhen an amount is transferred the allowance will be reduced by the\\namount transferred.\\n\\n# Arguments\\n\\n* `from` - The address holding the balance of tokens to be drawn from.\\n* `spender` - The address being authorized to spend the tokens held by\\n`from`.\\n* `amount` - The tokens to be made available to `spender`.\\n* `expiration_ledger` - The ledger number where this allowance expires. Cannot\\nbe less than the current ledger number unless the amount is being set to 0.\\nAn expired entry (where expiration_ledger < the current ledger number)\\nshould be treated as a 0 amount allowance.\\n\\n# Events\\n\\nEmits an event with topics `[\"approve\", from: Address,\\nspender: Address], data = [amount: i128, expiration_ledger: u32]`",
+      "doc": "Set the allowance by `amount` for `spender` to transfer/burn from\\n`from`.\\n\\nThe amount set is the amount that spender is approved to transfer out of\\nfrom's balance. The spender will be allowed to transfer amounts, and\\nwhen an amount is transferred the allowance will be reduced by the\\namount transferred.\\n\\n# Arguments\\n\\n* `from` - The address holding the balance of tokens to be drawn from.\\n* `spender` - The address being authorized to spend the tokens held by\\n`from`.\\n* `amount` - The tokens to be made available to `spender`.\\n* `live_until_ledger` - The ledger number where this allowance expires. Cannot\\nbe less than the current ledger number unless the amount is being set to 0.\\nAn expired entry (where live_until_ledger < the current ledger number)\\nshould be treated as a 0 amount allowance.\\n\\n# Events\\n\\nEmits an event with topics `[\"approve\", from: Address,\\nspender: Address, sep0011_asset: String], data = [amount: i128,\\nlive_until_ledger: u32]`",
       "name": "approve",
       "inputs": [
         {
           "doc": "",
           "name": "from",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "spender",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128"
+          "type": "i128"
         },
         {
           "doc": "",
-          "name": "expiration_ledger",
-          "type_": "u32"
+          "name": "live_until_ledger",
+          "type": "u32"
         }
       ],
       "outputs": []
@@ -73,7 +73,7 @@
         {
           "doc": "",
           "name": "id",
-          "type_": "address"
+          "type": "address"
         }
       ],
       "outputs": [
@@ -83,18 +83,18 @@
   },
   {
     "function_v0": {
-      "doc": "Burn `amount` from `from`.\\n\\nReduces from's balance by the amount, without transferring the balance\\nto another holder's balance.\\n\\n# Arguments\\n\\n* `from` - The address holding the balance of tokens which will be\\nburned from.\\n* `amount` - The amount of tokens to be burned.\\n\\n# Events\\n\\nEmits an event with topics `[\"burn\", from: Address], data = amount:\\ni128`",
+      "doc": "Burn `amount` from `from`.\\n\\nReduces from's balance by the amount, without transferring the balance\\nto another holder's balance.\\n\\n# Arguments\\n\\n* `from` - The address holding the balance of tokens which will be\\nburned from.\\n* `amount` - The amount of tokens to be burned.\\n\\n# Events\\n\\nEmits an event with topics `[\"burn\", from: Address,\\nsep0011_asset: String], data = amount: i128`",
       "name": "burn",
       "inputs": [
         {
           "doc": "",
           "name": "from",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128"
+          "type": "i128"
         }
       ],
       "outputs": []
@@ -102,23 +102,23 @@
   },
   {
     "function_v0": {
-      "doc": "Burn `amount` from `from`, consuming the allowance of `spender`.\\n\\nReduces from's balance by the amount, without transferring the balance\\nto another holder's balance.\\n\\nThe spender will be allowed to burn the amount from from's balance, if\\nthe amount is less than or equal to the allowance that the spender has\\non the from's balance. The spender's allowance on from's balance will be\\nreduced by the amount.\\n\\n# Arguments\\n\\n* `spender` - The address authorizing the burn, and having its allowance\\nconsumed during the burn.\\n* `from` - The address holding the balance of tokens which will be\\nburned from.\\n* `amount` - The amount of tokens to be burned.\\n\\n# Events\\n\\nEmits an event with topics `[\"burn\", from: Address], data = amount:\\ni128`",
+      "doc": "Burn `amount` from `from`, consuming the allowance of `spender`.\\n\\nReduces from's balance by the amount, without transferring the balance\\nto another holder's balance.\\n\\nThe spender will be allowed to burn the amount from from's balance, if\\nthe amount is less than or equal to the allowance that the spender has\\non the from's balance. The spender's allowance on from's balance will be\\nreduced by the amount.\\n\\n# Arguments\\n\\n* `spender` - The address authorizing the burn, and having its allowance\\nconsumed during the burn.\\n* `from` - The address holding the balance of tokens which will be\\nburned from.\\n* `amount` - The amount of tokens to be burned.\\n\\n# Events\\n\\nEmits an event with topics `[\"burn\", from: Address,\\nsep0011_asset: String], data = amount: i128`",
       "name": "burn_from",
       "inputs": [
         {
           "doc": "",
           "name": "spender",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "from",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128"
+          "type": "i128"
         }
       ],
       "outputs": []
@@ -126,18 +126,18 @@
   },
   {
     "function_v0": {
-      "doc": "Clawback `amount` from `from` account. `amount` is burned in the\\nclawback process.\\n\\n# Arguments\\n\\n* `from` - The address holding the balance from which the clawback will\\ntake tokens.\\n* `amount` - The amount of tokens to be clawed back.\\n\\n# Events\\n\\nEmits an event with topics `[\"clawback\", admin: Address, to: Address],\\ndata = amount: i128`",
+      "doc": "Clawback `amount` from `from` account. `amount` is burned in the\\nclawback process.\\n\\n# Arguments\\n\\n* `from` - The address holding the balance from which the clawback will\\ntake tokens.\\n* `amount` - The amount of tokens to be clawed back.\\n\\n# Events\\n\\nEmits an event with topics `[\"clawback\", from: Address,\\nsep0011_asset: String], data = amount: i128`",
       "name": "clawback",
       "inputs": [
         {
           "doc": "",
           "name": "from",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128"
+          "type": "i128"
         }
       ],
       "outputs": []
@@ -155,18 +155,18 @@
   },
   {
     "function_v0": {
-      "doc": "Mints `amount` to `to`.\\n\\n# Arguments\\n\\n* `to` - The address which will receive the minted tokens.\\n* `amount` - The amount of tokens to be minted.\\n\\n# Events\\n\\nEmits an event with topics `[\"mint\", admin: Address, to: Address], data\\n= amount: i128`",
+      "doc": "Mints `amount` to `to`.\\n\\n# Arguments\\n\\n* `to` - The address which will receive the minted tokens.\\n* `amount` - The amount of tokens to be minted.\\n\\n# Events\\n\\nEmits an event with topics `[\"mint\", to: Address,\\nsep0011_asset: String], data = amount: i128`",
       "name": "mint",
       "inputs": [
         {
           "doc": "",
           "name": "to",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128"
+          "type": "i128"
         }
       ],
       "outputs": []
@@ -184,13 +184,13 @@
   },
   {
     "function_v0": {
-      "doc": "Sets the administrator to the specified address `new_admin`.\\n\\n# Arguments\\n\\n* `new_admin` - The address which will henceforth be the administrator\\nof this token contract.\\n\\n# Events\\n\\nEmits an event with topics `[\"set_admin\", admin: Address], data =\\n[new_admin: Address]`",
+      "doc": "Sets the administrator to the specified address `new_admin`.\\n\\n# Arguments\\n\\n* `new_admin` - The address which will henceforth be the administrator\\nof this token contract.\\n\\n# Events\\n\\nEmits an event with topics `[\"set_admin\", admin: Address,\\nsep0011_asset: String], data = new_admin: Address`",
       "name": "set_admin",
       "inputs": [
         {
           "doc": "",
           "name": "new_admin",
-          "type_": "address"
+          "type": "address"
         }
       ],
       "outputs": []
@@ -208,18 +208,18 @@
   },
   {
     "function_v0": {
-      "doc": "Sets whether the account is authorized to use its balance. If\\n`authorized` is true, `id` should be able to use its balance.\\n\\n# Arguments\\n\\n* `id` - The address being (de-)authorized.\\n* `authorize` - Whether or not `id` can use its balance.\\n\\n# Events\\n\\nEmits an event with topics `[\"set_authorized\", id: Address], data =\\n[authorize: bool]`",
+      "doc": "Sets whether the account is authorized to use its balance. If\\n`authorized` is true, `id` should be able to use its balance.\\n\\n# Arguments\\n\\n* `id` - The address being (de-)authorized.\\n* `authorize` - Whether or not `id` can use its balance.\\n\\n# Events\\n\\nEmits an event with topics `[\"set_authorized\", id: Address,\\nsep0011_asset: String], data = authorize: bool`",
       "name": "set_authorized",
       "inputs": [
         {
           "doc": "",
           "name": "id",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "authorize",
-          "type_": "bool"
+          "type": "bool"
         }
       ],
       "outputs": []
@@ -237,23 +237,23 @@
   },
   {
     "function_v0": {
-      "doc": "Transfer `amount` from `from` to `to`.\\n\\n# Arguments\\n\\n* `from` - The address holding the balance of tokens which will be\\nwithdrawn from.\\n* `to` - The address which will receive the transferred tokens.\\n* `amount` - The amount of tokens to be transferred.\\n\\n# Events\\n\\nEmits an event with topics `[\"transfer\", from: Address, to: Address],\\ndata = amount: i128`",
+      "doc": "Transfer `amount` from `from` to `to`.\\n\\n# Arguments\\n\\n* `from` - The address holding the balance of tokens which will be\\nwithdrawn from.\\n* `to` - The address which will receive the transferred tokens.\\n* `amount` - The amount of tokens to be transferred.\\n\\n# Events\\n\\nWhen `to` is a muxed address, emits an event with:\\n* topics `[\"transfer\", from: Address, to: Address, sep0011_asset: String]`\\n* data `{ amount: i128, to_muxed_id: Option<u64> }: Map`\\n\\nOtherwise, emits an event with:\\n* topics `[\"transfer\", from: Address, to: Address, sep0011_asset: String]`\\n* data `amount: i128`\\n\\nWhen `from != to` and `from` is the asset issuer, a `mint` event is emitted instead.\\nWhen `from != to` and `to` is the asset issuer, a `burn` event is emitted instead.",
       "name": "transfer",
       "inputs": [
         {
           "doc": "",
           "name": "from",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "to",
-          "type_": "address"
+          "type": "muxed_address"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128"
+          "type": "i128"
         }
       ],
       "outputs": []
@@ -261,28 +261,42 @@
   },
   {
     "function_v0": {
-      "doc": "Transfer `amount` from `from` to `to`, consuming the allowance that\\n`spender` has on `from`'s balance. Authorized by spender\\n(`spender.require_auth()`).\\n\\nThe spender will be allowed to transfer the amount from from's balance\\nif the amount is less than or equal to the allowance that the spender\\nhas on the from's balance. The spender's allowance on from's balance\\nwill be reduced by the amount.\\n\\n# Arguments\\n\\n* `spender` - The address authorizing the transfer, and having its\\nallowance consumed during the transfer.\\n* `from` - The address holding the balance of tokens which will be\\nwithdrawn from.\\n* `to` - The address which will receive the transferred tokens.\\n* `amount` - The amount of tokens to be transferred.\\n\\n# Events\\n\\nEmits an event with topics `[\"transfer\", from: Address, to: Address],\\ndata = amount: i128`",
+      "doc": "Transfer `amount` from `from` to `to`, consuming the allowance that\\n`spender` has on `from`'s balance. Authorized by spender\\n(`spender.require_auth()`).\\n\\nThe spender will be allowed to transfer the amount from from's balance\\nif the amount is less than or equal to the allowance that the spender\\nhas on the from's balance. The spender's allowance on from's balance\\nwill be reduced by the amount.\\n\\n# Arguments\\n\\n* `spender` - The address authorizing the transfer, and having its\\nallowance consumed during the transfer.\\n* `from` - The address holding the balance of tokens which will be\\nwithdrawn from.\\n* `to` - The address which will receive the transferred tokens.\\n* `amount` - The amount of tokens to be transferred.\\n\\n# Events\\n\\nEmits an event with topics `[\"transfer\", from: Address, to: Address,\\nsep0011_asset: String], data = amount: i128`",
       "name": "transfer_from",
       "inputs": [
         {
           "doc": "",
           "name": "spender",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "from",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "to",
-          "type_": "address"
+          "type": "address"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128"
+          "type": "i128"
+        }
+      ],
+      "outputs": []
+    }
+  },
+  {
+    "function_v0": {
+      "doc": "Creates this contract asset's unlimited trustline for the provided\\naddress.\\n\\nThis is a no-op if the input address is a C-address, or if the\\nprovided G-address already has the respective trustline.\\n\\nIf the trustline is actually created, this will require authorization\\nfrom `addr` (i.e. `addr.require_auth` will be called).\\n\\n# Arguments\\n\\n* `addr` - The address for which a trustline will be created.\\n\\n# Panics\\n\\nPanics during trustline creation if the asset issuer does not exist,\\nor when a new trustline cannot be created.",
+      "name": "trust",
+      "inputs": [
+        {
+          "doc": "",
+          "name": "addr",
+          "type": "address"
         }
       ],
       "outputs": []
@@ -300,29 +314,72 @@
         {
           "doc": "",
           "name": "from",
-          "type_": "address",
+          "type": "address",
           "location": "topic_list"
         },
         {
           "doc": "",
           "name": "spender",
-          "type_": "address",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
           "location": "topic_list"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128",
+          "type": "i128",
           "location": "data"
         },
         {
           "doc": "",
-          "name": "expiration_ledger",
-          "type_": "u32",
+          "name": "live_until_ledger",
+          "type": "u32",
           "location": "data"
         }
       ],
       "data_format": "vec"
+    }
+  },
+  {
+    "event_v0": {
+      "doc": "",
+      "lib": "",
+      "name": "TransferWithAmountOnly",
+      "prefix_topics": [
+        "transfer"
+      ],
+      "params": [
+        {
+          "doc": "",
+          "name": "from",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "to",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "amount",
+          "type": "i128",
+          "location": "data"
+        }
+      ],
+      "data_format": "single_value"
     }
   },
   {
@@ -337,30 +394,46 @@
         {
           "doc": "",
           "name": "from",
-          "type_": "address",
+          "type": "address",
           "location": "topic_list"
         },
         {
           "doc": "",
           "name": "to",
-          "type_": "address",
+          "type": "address",
           "location": "topic_list"
         },
         {
           "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "to_muxed_id",
+          "type": {
+            "option": {
+              "value_type": "u64"
+            }
+          },
+          "location": "data"
+        },
+        {
+          "doc": "",
           "name": "amount",
-          "type_": "i128",
+          "type": "i128",
           "location": "data"
         }
       ],
-      "data_format": "single_value"
+      "data_format": "map"
     }
   },
   {
     "event_v0": {
       "doc": "",
       "lib": "",
-      "name": "TransferMuxed",
+      "name": "TransferWithMuxedString",
       "prefix_topics": [
         "transfer"
       ],
@@ -368,25 +441,86 @@
         {
           "doc": "",
           "name": "from",
-          "type_": "address",
+          "type": "address",
           "location": "topic_list"
         },
         {
           "doc": "",
           "name": "to",
-          "type_": "address",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
           "location": "topic_list"
         },
         {
           "doc": "",
           "name": "to_muxed_id",
-          "type_": "u32",
+          "type": {
+            "option": {
+              "value_type": "string"
+            }
+          },
           "location": "data"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128",
+          "type": "i128",
+          "location": "data"
+        }
+      ],
+      "data_format": "map"
+    }
+  },
+  {
+    "event_v0": {
+      "doc": "",
+      "lib": "",
+      "name": "TransferWithMuxedBytes",
+      "prefix_topics": [
+        "transfer"
+      ],
+      "params": [
+        {
+          "doc": "",
+          "name": "from",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "to",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "to_muxed_id",
+          "type": {
+            "option": {
+              "value_type": {
+                "bytes_n": {
+                  "n": 32
+                }
+              }
+            }
+          },
+          "location": "data"
+        },
+        {
+          "doc": "",
+          "name": "amount",
+          "type": "i128",
           "location": "data"
         }
       ],
@@ -405,13 +539,50 @@
         {
           "doc": "",
           "name": "from",
-          "type_": "address",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
           "location": "topic_list"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128",
+          "type": "i128",
+          "location": "data"
+        }
+      ],
+      "data_format": "single_value"
+    }
+  },
+  {
+    "event_v0": {
+      "doc": "",
+      "lib": "",
+      "name": "MintWithAmountOnly",
+      "prefix_topics": [
+        "mint"
+      ],
+      "params": [
+        {
+          "doc": "",
+          "name": "to",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "amount",
+          "type": "i128",
           "location": "data"
         }
       ],
@@ -430,17 +601,119 @@
         {
           "doc": "",
           "name": "to",
-          "type_": "address",
+          "type": "address",
           "location": "topic_list"
         },
         {
           "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "to_muxed_id",
+          "type": {
+            "option": {
+              "value_type": "u64"
+            }
+          },
+          "location": "data"
+        },
+        {
+          "doc": "",
           "name": "amount",
-          "type_": "i128",
+          "type": "i128",
           "location": "data"
         }
       ],
-      "data_format": "single_value"
+      "data_format": "map"
+    }
+  },
+  {
+    "event_v0": {
+      "doc": "",
+      "lib": "",
+      "name": "MintWithMuxedString",
+      "prefix_topics": [
+        "mint"
+      ],
+      "params": [
+        {
+          "doc": "",
+          "name": "to",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "to_muxed_id",
+          "type": {
+            "option": {
+              "value_type": "string"
+            }
+          },
+          "location": "data"
+        },
+        {
+          "doc": "",
+          "name": "amount",
+          "type": "i128",
+          "location": "data"
+        }
+      ],
+      "data_format": "map"
+    }
+  },
+  {
+    "event_v0": {
+      "doc": "",
+      "lib": "",
+      "name": "MintWithMuxedBytes",
+      "prefix_topics": [
+        "mint"
+      ],
+      "params": [
+        {
+          "doc": "",
+          "name": "to",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "to_muxed_id",
+          "type": {
+            "option": {
+              "value_type": {
+                "bytes_n": {
+                  "n": 32
+                }
+              }
+            }
+          },
+          "location": "data"
+        },
+        {
+          "doc": "",
+          "name": "amount",
+          "type": "i128",
+          "location": "data"
+        }
+      ],
+      "data_format": "map"
     }
   },
   {
@@ -455,13 +728,19 @@
         {
           "doc": "",
           "name": "from",
-          "type_": "address",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
           "location": "topic_list"
         },
         {
           "doc": "",
           "name": "amount",
-          "type_": "i128",
+          "type": "i128",
           "location": "data"
         }
       ],
@@ -479,8 +758,20 @@
       "params": [
         {
           "doc": "",
+          "name": "admin",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
           "name": "new_admin",
-          "type_": "address",
+          "type": "address",
           "location": "data"
         }
       ],
@@ -499,13 +790,19 @@
         {
           "doc": "",
           "name": "id",
-          "type_": "address",
+          "type": "address",
+          "location": "topic_list"
+        },
+        {
+          "doc": "",
+          "name": "sep0011_asset",
+          "type": "string",
           "location": "topic_list"
         },
         {
           "doc": "",
           "name": "authorize",
-          "type_": "bool",
+          "type": "bool",
           "location": "data"
         }
       ],
